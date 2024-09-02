@@ -4,12 +4,15 @@ extends CharacterBody3D
 const SPEED = 10.0
 const JUMP_VELOCITY = 12.0
 var sensativity = 0.002
+var selected = 6
 
 @onready var camera_3d = $Camera3D
 @onready var ray_cast_3d = $Camera3D/RayCast3D
+@onready var hotbar = $Hotbar
 
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	hotbar.select(0)
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
@@ -53,6 +56,27 @@ func _physics_process(delta: float) -> void:
 				ray_cast_3d.get_collider().place_block(
 					#you want to add instead of subtract to place the block
 					ray_cast_3d.get_collision_point() + ray_cast_3d.get_collision_normal() ,
-					1
+					selected
 				)
+	if Input.is_action_just_pressed("1"):
+		selected = 0
+		hotbar.select(0)
+	if Input.is_action_just_pressed("2"):
+		selected = 1
+		hotbar.select(1)
+	if Input.is_action_just_pressed("3"):
+		selected = 2
+		hotbar.select(2)
+	if Input.is_action_just_pressed("4"):
+		selected = 3
+		hotbar.select(3)
+	if Input.is_action_just_pressed("5"):
+		selected = 4
+		hotbar.select(4)
+	if Input.is_action_just_pressed("6"):
+		selected = 5
+		hotbar.select(5)
+	if Input.is_action_just_pressed("7"):
+		selected = 6
+		hotbar.select(6)
 	move_and_slide()
