@@ -1,0 +1,2 @@
+*.godot filter=lfs diff=lfs merge=lfs -text
+*.import filter=lfs diff=lfs merge=lfs -text
